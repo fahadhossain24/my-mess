@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../Shired/Loading/Loading';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, loginError] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    const location = useLocation();
 
     const navigate = useNavigate();
 
     let error;
+    const from = location.state?.from?.pathname || '/';
 
 
     if (loginError || googleError) {
@@ -22,7 +24,7 @@ const Login = () => {
     }
 
     if (user || googleUser) {
-        navigate('/home');
+        navigate(from, {replace: true});
     }
 
     //email password login.....

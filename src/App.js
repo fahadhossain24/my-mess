@@ -9,6 +9,9 @@ import Header from './pages/Shired/Header/Header';
 import NotFound from './pages/Shired/NotFound';
 import CreateMess from './pages/create-mess/CreateMess';
 import AddAsMember from './pages/Add-as-member/AddAsMember';
+import RequireAuth from './pages/Shired/RequireAuth';
+import { ToastContainer } from 'react-toastify';
+import OwnerDashboard from './pages/ownerDashboard/OwnerDashboard';
 
 function App() {
   return (
@@ -21,10 +24,24 @@ function App() {
         <Route path='/contact' element={<Contact></Contact>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
-        <Route path='/createMess' element={<CreateMess></CreateMess>}></Route>
-        <Route path='/addAsMember' element={<AddAsMember></AddAsMember>}></Route>
+        <Route path='/createMess' element={
+        <RequireAuth>
+          <CreateMess></CreateMess>
+        </RequireAuth>
+      }></Route>
+        <Route path='/addAsMember' element={
+        <RequireAuth>
+          <AddAsMember></AddAsMember>
+        </RequireAuth>
+        }></Route>
+        <Route path='/ownerDashboard' element={
+        <RequireAuth>
+          <OwnerDashboard></OwnerDashboard>
+        </RequireAuth>
+        }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

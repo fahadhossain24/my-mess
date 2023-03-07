@@ -25,13 +25,14 @@ const Header = () => {
         <li><Link to='/home'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/contact'>Contact</Link></li>
+        { user && <li><Link to='/ownerDashboard'>Dashboard</Link></li>}
         {
             user ? <li onClick={handleSignOut}><Link to=''>Signout</Link></li> : <li><Link to='/login'>Login</Link></li>
         }
     </>
 
     return (
-        <div className='bg-accent sticky top-0'>
+        <div className='bg-accent sticky top-0 z-10'>
             <div className="navbar container text-base-300 ">
                 <div className="navbar-start">
                     <div className="dropdown">

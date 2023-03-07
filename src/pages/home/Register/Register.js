@@ -6,7 +6,7 @@ import auth from '../../../firebase.init';
 import Loading from '../../Shired/Loading/Loading';
 
 const Register = () => {
-    const [createUserWithEmailAndPassword, user, loading, loginError] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, loading, loginError] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [err, setErr] = useState('');
     const [name, setName] = useState('');
