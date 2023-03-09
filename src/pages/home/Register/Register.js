@@ -27,14 +27,13 @@ const Register = () => {
         return <Loading></Loading>
     }
 
-    if (token) {
-        // navigate('/home');
+    if (token || user || googleUser) {
+        navigate('/home');
     }
     
     if(authUser){
         authUser.displayName = name;
     }
-    console.log(authUser);
    
     //email password login.....
     const handleRegister = async (e) => {

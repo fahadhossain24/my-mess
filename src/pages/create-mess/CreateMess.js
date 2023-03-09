@@ -1,23 +1,46 @@
 import React from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
 const CreateMess = () => {
     const navigate = useNavigate();
-    
+    const [currentUser] = useAuthState(auth);
+
     const handleCreateNewMess = (event) => {
         event.preventDefault();
         const messInfo = {
             name: event.target.name.value,
-            OwnerEmail: event.target.OwnerEmail.value,
+            ownerEmail: event.target.OwnerEmail.value,
             houseRant: event.target.houseRant.value,
             currentBill: event.target.currentBill.value,
             wifiBill: event.target.wifiBill.value,
             auntyBill: event.target.auntyBill.value,
             othersBill: event.target.othersBill.value,
         }
-        console.log('evenything is ok', messInfo);
-        event.target.reset()
-        navigate('/ownerDashboard')
+        //send mess information to database by server
+        const url = `http://localhost:5000/mess/${messInfo.ownerEmail}`;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({messInfo, currentUser}),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    navigate('/ownerDashboard');
+                    toast.success(`Your ${messInfo.name} mess successfully created`);
+                }
+                else{
+                    toast.warning(data.message)
+                }
+                event.target.reset();
+
+            })
+
     }
 
     return (
