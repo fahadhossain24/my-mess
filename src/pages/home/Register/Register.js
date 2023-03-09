@@ -1,17 +1,20 @@
 
 import React, { useState } from 'react';
-import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useToken from '../../Shired/hooks/useToken';
 import Loading from '../../Shired/Loading/Loading';
 
 const Register = () => {
     const [createUserWithEmailAndPassword, user, loading, loginError] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+    // const [updateProfile, updating, UpError] = useUpdateProfile(auth);
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [err, setErr] = useState('');
     const [name, setName] = useState('');
     const [authUser, authUserLoading] = useAuthState(auth);
     const navigate = useNavigate();
+    const [token] = useToken(user || googleUser);
 
     let error;
 
@@ -24,12 +27,14 @@ const Register = () => {
         return <Loading></Loading>
     }
 
-    if (user || googleUser) {
-        navigate('/home');
+    if (token) {
+        // navigate('/home');
     }
+    
     if(authUser){
         authUser.displayName = name;
     }
+    console.log(authUser);
    
     //email password login.....
     const handleRegister = async (e) => {
@@ -50,8 +55,8 @@ const Register = () => {
 
     // google login....
 
-    const handleGoogleLogin = () => {
-        signInWithGoogle()
+    const handleGoogleLogin = async() => {
+        await signInWithGoogle()
     }
     return (
         <div>
