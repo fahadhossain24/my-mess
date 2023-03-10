@@ -10,13 +10,13 @@ const Header = () => {
     const [signOut, signOutLoading] = useSignOut(auth);
     const navigate = useNavigate();
 
-    if(loading || signOutLoading){
+    if (loading || signOutLoading) {
         return <Loading></Loading>;
     }
 
-    const handleSignOut = async() => {
+    const handleSignOut = async () => {
         const success = await signOut();
-        if(success){
+        if (success) {
             navigate('/login');
         }
     }
@@ -25,7 +25,7 @@ const Header = () => {
         <li><Link to='/home'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/contact'>Contact</Link></li>
-        { user && <li><Link to='/ownerDashboard'>Dashboard</Link></li>}
+        {user && <li><Link to='/ownerDashboard'>Dashboard</Link></li>}
         {
             user ? <li onClick={handleSignOut}><Link to=''>Signout</Link></li> : <li><Link to='/login'>Login</Link></li>
         }
@@ -34,7 +34,7 @@ const Header = () => {
     return (
         <div className='bg-accent sticky top-0 z-10'>
             <div className="navbar container text-base-300 ">
-                <div className="navbar-start">
+                <div className="navbar-start w-full lg:w-[50%]">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -43,14 +43,21 @@ const Header = () => {
                             {menuItem}
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl">MyMess</Link>
+                    <div className='d-flex w-100 justify-between'>
+                        <Link to='/' className="btn btn-ghost normal-case text-xl">MyMess</Link>
+                        <div className="drawer-content flex flex-col items-center justify-center">
+                            {/* Page content here */}
+                            <label htmlFor="my-drawer-2" className="text-3xl cursor-pointer drawer-button lg:hidden">...</label>
+
+                        </div>
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {menuItem}
                     </ul>
                 </div>
-                
+
             </div>
         </div>
     );
