@@ -12,6 +12,11 @@ import AddAsMember from './pages/Add-as-member/AddAsMember';
 import RequireAuth from './pages/Shired/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import OwnerDashboard from './pages/ownerDashboard/OwnerDashboard';
+import AddMember from './pages/ownerDashboard/AddMember';
+import DashBoardHome from './pages/ownerDashboard/DashBoardHome';
+import MessCost from './pages/ownerDashboard/MessCost';
+import MealCost from './pages/ownerDashboard/MealCost';
+import MessGalary from './pages/ownerDashboard/MessGalary';
 
 function App() {
   return (
@@ -34,11 +39,13 @@ function App() {
           <AddAsMember></AddAsMember>
         </RequireAuth>
         }></Route>
-        <Route path='/ownerDashboard' element={
-        <RequireAuth>
-          <OwnerDashboard></OwnerDashboard>
-        </RequireAuth>
-        }></Route>
+        <Route path='ownerDashboard' element={<RequireAuth><OwnerDashboard></OwnerDashboard></RequireAuth>}>
+          <Route index element={<DashBoardHome></DashBoardHome>}></Route>
+          <Route path='addMember' element={<AddMember></AddMember>}></Route>
+          <Route path='messCost' element={<MessCost></MessCost>}></Route>
+          <Route path='mealCost' element={<MealCost></MealCost>}></Route>
+          <Route path='messGalary' element={<MessGalary></MessGalary>}></Route>
+        </Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>
