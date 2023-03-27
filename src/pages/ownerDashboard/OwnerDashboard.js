@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shired/Loading/Loading';
 import DashBoardActivity from './DashBoardActivity';
@@ -8,6 +9,7 @@ const OwnerDashboard = () => {
     const [currentUser] = useAuthState(auth);
     const [messInfo, setMessInfo] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIsLoading(true)
@@ -25,14 +27,21 @@ const OwnerDashboard = () => {
                 }
             })
     }, [])
+
+    const handleCreateMess = (user) => {
+        navigate('/createMess')
+    }
     return (
         <div className='container'>
             {
-                ((isLoading) && (<Loading></Loading>)) || ((!isLoading) && (messInfo._id ? <DashBoardActivity key={messInfo._id} messInfo = {messInfo}></DashBoardActivity> : <>
+                ((isLoading) && (<Loading></Loading>)) || ((!isLoading) && (messInfo._id ? <DashBoardActivity key={messInfo._id} messInfo={messInfo}></DashBoardActivity> : <>
                     <div className='text-center mt-4'>
                         <h1 className='text-3xl'>404</h1>
                         <h2 className='text-error text-2xl'>{messInfo.message}</h2>
                         <p className=''>You should have access it after getting mess wonership</p>
+                        <div className="mt-3">
+                            <button onClick={handleCreateMess} className='btn btn-accent me-4 text-2xl'>Create a mess</button>
+                        </div>
                     </div>
                 </>))
 

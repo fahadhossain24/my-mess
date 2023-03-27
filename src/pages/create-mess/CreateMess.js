@@ -18,6 +18,7 @@ const CreateMess = () => {
             wifiBill: event.target.wifiBill.value,
             auntyBill: event.target.auntyBill.value,
             othersBill: event.target.othersBill.value,
+            totalMember: event.target.totalMember.value,
         }
         //send mess information to database by server
         const url = `http://localhost:5000/mess/${messInfo.ownerEmail}`;
@@ -49,7 +50,8 @@ const CreateMess = () => {
             <div className="form-control w-50 mx-auto p-4 border-accent-focus">
                 <form onSubmit={handleCreateNewMess}>
                     <input type="text" placeholder="Mess Name" name='name' className="input input-bordered border-accent rounded w-100" required />
-                    <input type="text" placeholder="Mess Owner Email" name='OwnerEmail' className="input input-bordered border-accent rounded w-100 mt-3" required />
+                    <input type="email" placeholder="Mess Owner Email" name='OwnerEmail' className="input input-bordered border-accent rounded w-100 mt-3" required />
+                    <input type="text" placeholder="Total Member" name='totalMember' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="House Rant" name='houseRant' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Current Bill" name='currentBill' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Wifi Bill" name='wifiBill' className="input input-bordered border-accent rounded w-100  mt-3" required />

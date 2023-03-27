@@ -17,6 +17,7 @@ import DashBoardHome from './pages/ownerDashboard/DashBoardHome';
 import MessCost from './pages/ownerDashboard/MessCost';
 import MealCost from './pages/ownerDashboard/MealCost';
 import MessGalary from './pages/ownerDashboard/MessGalary';
+import RequestedMember from './pages/ownerDashboard/RequestedMember';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path='ownerDashboard' element={<RequireAuth><OwnerDashboard></OwnerDashboard></RequireAuth>}>
           <Route index element={<DashBoardHome></DashBoardHome>}></Route>
           <Route path='addMember' element={<AddMember></AddMember>}></Route>
+          <Route path='RequestedMembers' element={<RequestedMember></RequestedMember>}></Route>
           <Route path='messCost' element={<MessCost></MessCost>}></Route>
           <Route path='mealCost' element={<MealCost></MealCost>}></Route>
           <Route path='messGalary' element={<MessGalary></MessGalary>}></Route>
