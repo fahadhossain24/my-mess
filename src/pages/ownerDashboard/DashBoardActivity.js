@@ -12,11 +12,12 @@ const DashBoardActivity = ({ messInfo }) => {
                 </div>
                 <div className="drawer-side z-0">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-2 w-80 bg-base-100 text-secondary w-[200px]">
+                    <ul className="menu p-2 w-80 text-secondary w-[200px]">
                         {/* Sidebar content here */}
                         <li><Link to='/ownerDashboard'>Dashboard Home</Link></li>
                         <li><Link to='/ownerDashboard/addMember'>Add or Update Member</Link></li>
-                        <li><Link to='/ownerDashboard/RequestedMembers'>Requested Members</Link></li>
+                        <li><Link to='/ownerDashboard/requestedMembers'>Requested Members</Link></li>
+                        <li><Link to='/ownerDashboard/currentMembers'>Current Members</Link></li>
                         <li><Link to='/ownerDashboard/messCost'>Mess Cost</Link></li>
                         <li><Link to='/ownerDashboard/mealCost'>Meal Cost</Link></li>
                         <li><Link to='/ownerDashboard/messGalary'>Mess Galary</Link></li>

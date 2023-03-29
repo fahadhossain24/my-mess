@@ -108,8 +108,9 @@ const AddMember = () => {
                             <option value="Manager">Manager</option>
                             <option value="Genarel Member">Genarel Member</option>
                         </select>
-                        <label htmlFor="memberImage" className='mt-3'>Upload Image</label>
-                        <input type="file" onChange={onImageChange} name="memberImage" id="memberImage" className="input input-bordered border-accent rounded w-100 p-2 " required />
+                        <input className='input input-bordered border-accent rounded w-100 mt-3' type="text" placeholder='Member image url' name="imageUrl" id="" /><p className='text-center pt-2'>Or</p>
+                        <label htmlFor="memberImage" className='mt-2'>Upload Image</label>
+                        <input type="file" onChange={onImageChange} name="memberImage" id="memberImage" className="input input-bordered border-accent rounded w-100 p-2 " />
                         <input className='btn btn-accent mt-3 w-100 capitalize ' type="submit" value="Add" />
                     </form>
                 </div>

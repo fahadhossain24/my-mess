@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 import Loading from '../Shired/Loading/Loading';
 
 const AddAsMember = () => {
     const [memberImage, setMemberImage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-
+    const [user] = useAuthState(auth);
 
     const handleAddAsMember = (event) => {
         setIsLoading(true);
@@ -71,7 +73,7 @@ const AddAsMember = () => {
                     <input type="text" placeholder="Mess Id" name='id' className="input input-bordered border-accent rounded w-100" required />
                     <input type="text" placeholder="Your Name" name='name' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Phone Number" name='phone' className="input input-bordered border-accent rounded w-100 mt-3" required />
-                    <input type="email" placeholder="Email Address" name='email' className="input input-bordered border-accent rounded w-100 mt-3" required />
+                    <input type="email" placeholder="Email Address" name='email' className="input input-bordered border-accent border-dotted rounded w-100 mt-3" style={{background: '#eee', borderColor: 'cyan'}} value={user?.email} disabled required />
                     <input type="text" placeholder="NID Number" name='nidNumber' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Status" name='status' className="input input-bordered border-accent rounded w-100  mt-3" required />
                     <input type="text" placeholder="Address" name='address' className="input input-bordered border-accent rounded w-100  mt-3" required />
