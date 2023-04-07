@@ -20,6 +20,7 @@ const DisplayRequestedMember = ({ requestedMember, setDetails, handleDeleteReque
         // memberRole: ,
         memberImage: image,
         roomCatagory: roomCatagory,
+        messId: messId,
     }
 
     useEffect(() => {
@@ -48,7 +49,7 @@ const DisplayRequestedMember = ({ requestedMember, setDetails, handleDeleteReque
 
     const handleRequestedMemberAdd = () => {
         setIsLoading(true);
-        console.log(newMemberInfo.emailAddress)
+        // console.log(newMemberInfo.emailAddress)
         const url = `http://localhost:5000/addMessMember/${newMemberInfo.emailAddress}`
         fetch(url, {
             method: "PUT",

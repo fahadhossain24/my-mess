@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
-const DashBoardActivity = ({ messInfo }) => {
+const DashBoardActivity = ({ messInfo, actualMember }) => {
+    const [messInformation, setMessInformation] = useState({});
+    useEffect(() => {
+        fetch(`http://localhost:5000/messById/${actualMember.messId}`)
+        .then(res => res.json())
+        .then(data => {
+            setMessInformation(data.name)
+        })
+    }, [])
+    console.log(messInformation)
     return (
         <div>
-            <h2 className='text-center text-2xl mt-2 text-secondary font-bold'>Welcome to <span className='text-accent'>{messInfo.name}</span> Owner Dashboard</h2>
+            <h2 className='text-center text-2xl mt-2 text-secondary font-bold'>Welcome to <span className='text-accent'>{(messInfo?.name) || (messInformation)}</span> Dashboard</h2>
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col ">

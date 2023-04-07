@@ -7,7 +7,7 @@ const ModalOfcurrentMemberDetails = ({details}) => {
             <input type="checkbox" id="details-modal" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box bg-gray-600">
-                    <h3 className="font-bold text-lg text-accent">Requested Member Details</h3>
+                    <h3 className="font-bold text-lg text-accent">{name}'s Details</h3>
                     <h2 className='mt-[12px] text-gray-400'>Member name: <span className='text-accent'>{name}</span></h2>
                     <h2 className='mt-[8px] text-gray-400'>Phone number: <span className='text-accent'>{phoneNumber}</span></h2>
                     <h2 className='mt-[8px] text-gray-400'>Email address: <span className='text-accent'>{emailAddress}</span></h2>

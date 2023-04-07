@@ -29,7 +29,8 @@ const AddMember = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.success) {
+                console.log(data)
+                if (data.success || data.status_code === 400) {
                     const newMemberInfo = {
                         name: event.target.name.value,
                         phoneNumber: event.target.phoneNumber.value,
@@ -40,6 +41,7 @@ const AddMember = () => {
                         developmentCharge: event.target.developmentCharge.value,
                         paymentStatus: paymentStatus,
                         memberRole: memberRole,
+                        memberImageUrl: event.target.imageUrl.value,
                         memberImage: data?.data?.url,
                     }
                     // send newMemberInfo to database by server

@@ -1,25 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import DisplayCurrentMember from './DisplayCurrentMember';
 import ModalOfcurrentMemberDetails from './ModalOfcurrentMemberDetails';
+import UpdateCurrentMemberModal from './UpdateCurrentMemberModal';
 
 const CurrentMessMember = () => {
-    const [currentMembers, setCurrentMembers] = useState();
+    const [currentMembers, setCurrentMembers] = useState([]);
     const [details, setDetails] = useState({});
-
+    console.log(details)
     useEffect(() => {
         fetch('http://localhost:5000/messMember')
-        .then(res => res.json())
-        .then(data => setCurrentMembers(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setCurrentMembers(data))
+    }, [currentMembers])
+console.log(details)
+    const hanldeDeleteCurrentMember = (memberEmail) => {
+        const confirmation = window.confirm('Are You sure you want to delete this member?')
+        if(confirmation){
+            const url = `http://localhost:5000/messMember/${memberEmail}`
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+                    const existingMemebers = currentMembers.filter(currentMember => currentMember.email !== memberEmail);
+                    if (existingMemebers) {
+                        setCurrentMembers(existingMemebers);
+                    }
+                }
+            })
+        }
+    }
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const date = new Date();
+    const monthName = months[date.getMonth()]
+
     return (
         <div>
-            <h2>Current total members {currentMembers?.length}</h2>
+            <div className='text-xl pb-2 font-bold flex justify-between'>
+                <h2><span className='text-accent'>Current total members: </span>{currentMembers?.length}</h2>
+                <h2> <span className='text-accent'>Current Month:</span> {monthName}</h2>
+            </div>
             <div className='flex flex-wrap gap-2'>
-            {
-                currentMembers?.map(currentMember => <DisplayCurrentMember key={currentMember._id} currentMember = {currentMember} setDetails = {setDetails}></DisplayCurrentMember>)
-            }
+                {
+                    currentMembers?.map(currentMember => <DisplayCurrentMember
+                        key={currentMember._id}
+                        currentMember={currentMember}
+                        setDetails={setDetails}
+                        hanldeDeleteCurrentMember={hanldeDeleteCurrentMember}
+                    ></DisplayCurrentMember>)
+                }
             </div>
             {details && <ModalOfcurrentMemberDetails key={details._id} details={details}></ModalOfcurrentMemberDetails>}
+            {details && <UpdateCurrentMemberModal details={details}></UpdateCurrentMemberModal>}
         </div>
     );
 };
