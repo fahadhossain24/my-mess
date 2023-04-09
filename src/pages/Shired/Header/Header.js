@@ -44,7 +44,7 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className='d-flex w-100 justify-between'>
-                        <Link to='/' className="btn btn-ghost normal-case text-xl">MyMess</Link>
+                        <Link to='/' className="btn btn-ghost normal-case text-xl">Bachelor Trip</Link>
                         <div className="drawer-content flex flex-col items-center justify-center">
                             {/* Page content here */}
                             <label htmlFor="my-drawer-2" className="text-3xl cursor-pointer drawer-button lg:hidden">...</label>

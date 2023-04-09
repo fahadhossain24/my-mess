@@ -20,8 +20,8 @@ const DisplayCurrentMember = ({ currentMember, setDetails, hanldeDeleteCurrentMe
                     <p className="card-title text-[17px] mt-0 leading-none">R/C: <span className='text-accent font-bold'>{roomCatagory}</span></p>
                     <p className="card-title text-[17px] mt-0 leading-none">P/S: <span className='text-success font-bold'>{paymentStatus}</span></p>
                     <div className="card-actions justify-center px-2 w-full">
-                        <label htmlFor="details-modal" onClick={() => setDetails(currentMember)} className="btn btn-accent btn-xs">More</label>
-                        {(!houseRant && !memberRole && !othersCost && !developmentCharge && !paymentStatus) && <label htmlFor="update-modals" onClick={() => setDetails(currentMember)} className="text-warning cursor-pointer">Update</label>}
+                        <label htmlFor="details-modal" onClick={() => setDetails(currentMember)} className="text-success cursor-pointer font-bold text-[15px]">More</label>
+                        <label htmlFor="update-modals" onClick={() => setDetails(currentMember)} className="text-warning cursor-pointer font-bold text-[15px]">Update</label>
                         <button className="text-error font-bold text-[15px]" onClick={() => hanldeDeleteCurrentMember(emailAddress)}> Delete</button>
                     </div>
                 </div>

@@ -25,6 +25,7 @@ const AddAsMember = () => {
             .then(data => {
                 if (data.success) {
                     const requestedMemberInformation = {
+                        messName: event.target.messName.value,
                         messId: event.target.id.value,
                         name: event.target.name.value,
                         phone: event.target.phone.value,
@@ -70,7 +71,8 @@ const AddAsMember = () => {
             <h2 className='text-center text-3xl font-bold mt-3 text-secondary'>Member <span className='text-accent'>Request</span></h2>
             <div className="form-control w-50 mx-auto p-4 border-accent-focus">
                 <form onSubmit={handleAddAsMember}>
-                    <input type="text" placeholder="Mess Id" name='id' className="input input-bordered border-accent rounded w-100" required />
+                    <input type="text" placeholder="Mess Name" name='messName' className="input input-bordered border-accent rounded w-100" required />
+                    <input type="text" placeholder="Mess Id" name='id' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Your Name" name='name' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Phone Number" name='phone' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="email" placeholder="Email Address" name='email' className="input input-bordered border-accent border-dotted rounded w-100 mt-3" style={{background: '#eee', borderColor: 'cyan'}} value={user?.email} disabled required />
@@ -80,9 +82,9 @@ const AddAsMember = () => {
                     <input type="text" placeholder="Parents Phone" name='parentsPhone' className="input input-bordered border-accent rounded w-100  mt-3" required />
                     <select name="roomCatagory" className="input input-bordered border-accent rounded w-100  mt-3" id="" required>
                         <option value="">Select Room Catagory</option>
-                        <option value="VIP-1">High class</option>
-                        <option value="VIP-2">Mid class</option>
-                        <option value="VIP-3">Low class</option>
+                        <option value="Hign Clss">High class</option>
+                        <option value="Mid Class">Mid class</option>
+                        <option value="Low Class">Low class</option>
                     </select><br />
                     <label htmlFor="memberImage" className='mt-2'>Upload Your Image</label><br />
                     <input type="file" onChange={handleImageChange} name="memberImage" className='mt-1' id="" required/>

@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react';
 import DisplayCurrentMember from './DisplayCurrentMember';
 import ModalOfcurrentMemberDetails from './ModalOfcurrentMemberDetails';
 import UpdateCurrentMemberModal from './UpdateCurrentMemberModal';
+import Loading from '../Shired/Loading/Loading';
 
 const CurrentMessMember = () => {
     const [currentMembers, setCurrentMembers] = useState([]);
     const [details, setDetails] = useState({});
-    console.log(details)
+
     useEffect(() => {
         fetch('http://localhost:5000/messMember')
             .then(res => res.json())
-            .then(data => setCurrentMembers(data))
+            .then(data => {
+                setCurrentMembers(data);
+            })
     }, [currentMembers])
-console.log(details)
+
     const hanldeDeleteCurrentMember = (memberEmail) => {
         const confirmation = window.confirm('Are You sure you want to delete this member?')
         if(confirmation){
@@ -41,6 +44,7 @@ console.log(details)
                 <h2><span className='text-accent'>Current total members: </span>{currentMembers?.length}</h2>
                 <h2> <span className='text-accent'>Current Month:</span> {monthName}</h2>
             </div>
+            
             <div className='flex flex-wrap gap-2'>
                 {
                     currentMembers?.map(currentMember => <DisplayCurrentMember
@@ -53,6 +57,7 @@ console.log(details)
             </div>
             {details && <ModalOfcurrentMemberDetails key={details._id} details={details}></ModalOfcurrentMemberDetails>}
             {details && <UpdateCurrentMemberModal details={details}></UpdateCurrentMemberModal>}
+       
         </div>
     );
 };

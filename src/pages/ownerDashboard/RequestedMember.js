@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import DisplayRequestedMember from './DisplayRequestedMember';
 import ModalForRequestedMemberDetails from './ModalForRequestedMemberDetails';
+import Loading from '../Shired/Loading/Loading';
 
 const RequestedMember = () => {
     const [requestedMembers, setRequestedMembers] = useState([]);
@@ -39,6 +40,7 @@ const RequestedMember = () => {
             }
             {details && <ModalForRequestedMemberDetails key={details._id} details={details}></ModalForRequestedMemberDetails>}
         </div>
+
     );
 };
 

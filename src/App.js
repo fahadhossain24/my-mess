@@ -19,6 +19,7 @@ import MealCost from './pages/ownerDashboard/MealCost';
 import MessGalary from './pages/ownerDashboard/MessGalary';
 import RequestedMember from './pages/ownerDashboard/RequestedMember';
 import CurrentMessMember from './pages/ownerDashboard/CurrentMessMember';
+import AdminCard from './pages/ownerDashboard/AdminCard';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path='messCost' element={<MessCost></MessCost>}></Route>
           <Route path='mealCost' element={<MealCost></MealCost>}></Route>
           <Route path='messGalary' element={<MessGalary></MessGalary>}></Route>
+          <Route path='adminCard' element={<AdminCard></AdminCard>}></Route>
         </Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
