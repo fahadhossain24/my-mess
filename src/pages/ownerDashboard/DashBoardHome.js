@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shired/Loading/Loading';
+import { Link } from 'react-router-dom';
 
 const DashBoardHome = () => {
     const [currentMember, setCurrentMember] = useState({});
@@ -23,7 +24,7 @@ const DashBoardHome = () => {
                 setIsLoading(false);
             })
     }, [])
-    
+   
     return (
         <>{
             (isLoading && <Loading></Loading>) || (!isLoading && <div>
@@ -44,7 +45,7 @@ const DashBoardHome = () => {
                         <h2>Total without Uplift: {totalWithoutUplift}</h2>
                         <h2>Payment Status: <span className='px-2 bg-accent border'>{currentMember.paymentStatus}</span></h2>
                         <div className="card-actions justify-end">
-                            <button className="badge badge-outline bg-accent p-3">Pay</button>
+                            {currentMember?.paymentStatus === 'Unpaid' && <Link to={`/ownerDashboard/payment/${currentMember?.emailAddress}`}><button className="badge badge-outline bg-accent p-3">Pay</button></Link>}
                         </div>
                     </div>
                 </div>

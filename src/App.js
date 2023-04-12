@@ -20,6 +20,7 @@ import MessGalary from './pages/ownerDashboard/MessGalary';
 import RequestedMember from './pages/ownerDashboard/RequestedMember';
 import CurrentMessMember from './pages/ownerDashboard/CurrentMessMember';
 import AdminCard from './pages/ownerDashboard/AdminCard';
+import Payment from './pages/ownerDashboard/Payment';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path='ownerDashboard' element={<RequireAuth><OwnerDashboard></OwnerDashboard></RequireAuth>}>
           <Route index element={<DashBoardHome></DashBoardHome>}></Route>
           <Route path='addMember' element={<AddMember></AddMember>}></Route>
+          <Route path='payment/:email' element={<Payment></Payment>}></Route>
           <Route path='requestedMembers' element={<RequestedMember></RequestedMember>}></Route>
           <Route path='currentMembers' element={<CurrentMessMember></CurrentMessMember>}></Route>
           <Route path='messCost' element={<MessCost></MessCost>}></Route>

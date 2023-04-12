@@ -20,19 +20,19 @@ const DashBoardActivity = ({ messInfo, findedMess }) => {
             <h2 className='text-center text-2xl mt-2 text-secondary font-bold'>Welcome to <span className='text-accent'>{(messInfo?.name) || findedMess?.name}</span>{findedMess?.name ? ' User ' : ' Owner '} Dashboard</h2>
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col ">
+                <div className="drawer-content flex flex-col">
                     <Outlet></Outlet>
                 </div>
-                <div className="drawer-side z-0">
+                <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-2 w-80 text-secondary w-[200px]">
+                    <ul className="menu p-2 w-80 bg-base-100 text-secondary w-[200px]">
                         {/* Sidebar content here */}
                         <li><Link to='/ownerDashboard'>Dashboard Home</Link></li>
                         {(!(memberRole === 'Manager') && !(memberRole === 'Genarel Member')) && <li><Link to='/ownerDashboard/addMember'>Add or Update Member</Link></li>}
                         {(!(memberRole === 'Manager') && !(memberRole === 'Genarel Member')) && <li><Link to='/ownerDashboard/requestedMembers'>Requested Members</Link></li>}
                         {!(memberRole === 'Genarel Member') && <li><Link to='/ownerDashboard/currentMembers'>Current Members</Link></li>}
                         {!(memberRole === 'Genarel Member') && <li><Link to='/ownerDashboard/messCost'>Cost Details</Link></li>}
-                        {!(memberRole === 'Genarel Member') &&<li><Link to='/ownerDashboard/mealCost'>Calculate Meal</Link></li>}
+                        {!(memberRole === 'Genarel Member') && <li><Link to='/ownerDashboard/mealCost'>Calculate Meal</Link></li>}
                         <li><Link to='/ownerDashboard/messGalary'>Mess Galary</Link></li>
                         {(!(memberRole === 'Manager') && !(memberRole === 'Genarel Member')) && <li><Link to='/ownerDashboard/adminCard'>Admin Card</Link></li>}
                     </ul>

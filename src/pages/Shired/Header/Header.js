@@ -30,7 +30,7 @@ const Header = () => {
             user ? <li onClick={handleSignOut}><Link to=''>Signout</Link></li> : <li><Link to='/login'>Login</Link></li>
         }
     </>
-
+    
     return (
         <div className='bg-accent sticky top-0 z-10'>
             <div className="navbar container text-base-300 ">
