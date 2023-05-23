@@ -25,13 +25,13 @@ const Home = () => {
                 <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner carousell-image-wapper">
                         <div className="carousel-item active carousl-custom">
-                            <img src={image2} className="d-block w-100" alt="..."/>
+                            <img src={image2} className="d-block w-100 h-100" alt="..."/>
                         </div>
                         <div className="carousel-item carousl-custom">
-                            <img src={image3} className="d-block w-100" alt="..."/>
+                            <img src={image3} className="d-block w-100 h-100" alt="..."/>
                         </div>
                         <div className="carousel-item carousl-custom">
-                            <img src={image1} className="d-block w-100" alt="..."/>
+                            <img src={image1} className="d-block w-100 h-100" alt="..."/>
                         </div>
                     </div>
                     

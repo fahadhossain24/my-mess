@@ -19,7 +19,7 @@ const OwnerDashboard = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`http://localhost:5000/mess/${currentUser?.email}`)
+        fetch(`https://my-mess-server.vercel.app/mess/${currentUser?.email}`)
             .then(res => res.json())
             .then(data => {
 
@@ -36,13 +36,13 @@ const OwnerDashboard = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`http://localhost:5000/messById/${messIdFromUser}`)
+        fetch(`https://my-mess-server.vercel.app/messById/${messIdFromUser}`)
             .then(res => res.json())
             .then(data => {
-                if(data._id){
+                if (data._id) {
                     setFindedMess(data);
                     setIsLoading(false);
-                }else{
+                } else {
                     setErrorMsg(data.message);
                     setIsLoading(false);
                 }
@@ -51,7 +51,7 @@ const OwnerDashboard = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:5000/messMember/${currentUser.email}`)
+        fetch(`https://my-mess-server.vercel.app/messMember/${currentUser.email}`)
             .then(res => res.json())
             .then(data => {
                 setCurrentMember(data);
@@ -63,15 +63,15 @@ const OwnerDashboard = () => {
     }
 
     const handleLoginIntoAMess = () => {
-        if(findedMess){
+        if (findedMess) {
             if (findedMess?._id === messIdFromUser) {
-                if(currentMember?.emailAddress === currentUser?.email){
+                if (currentMember?.emailAddress === currentUser?.email) {
                     setSuccessLogin(true);
                     toast.success('Successfully Login');
-                }else{
+                } else {
                     toast.error('Sorry, You have no membership on this mess.');
                 }
-            }else{
+            } else {
                 setSuccessLogin(false);
                 toast.warning(errorMsg)
             }

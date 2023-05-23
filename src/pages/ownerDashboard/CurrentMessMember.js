@@ -9,7 +9,7 @@ const CurrentMessMember = () => {
     const [details, setDetails] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:5000/messMember')
+        fetch('https://my-mess-server.vercel.app/messMember')
             .then(res => res.json())
             .then(data => {
                 setCurrentMembers(data);
@@ -18,23 +18,23 @@ const CurrentMessMember = () => {
 
     const hanldeDeleteCurrentMember = (memberEmail) => {
         const confirmation = window.confirm('Are You sure you want to delete this member?')
-        if(confirmation){
-            const url = `http://localhost:5000/messMember/${memberEmail}`
-        fetch(url, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount) {
-                    const existingMemebers = currentMembers.filter(currentMember => currentMember.email !== memberEmail);
-                    if (existingMemebers) {
-                        setCurrentMembers(existingMemebers);
-                    }
-                }
+        if (confirmation) {
+            const url = `https://my-mess-server.vercel.app/messMember/${memberEmail}`
+            fetch(url, {
+                method: 'DELETE'
             })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        const existingMemebers = currentMembers.filter(currentMember => currentMember.email !== memberEmail);
+                        if (existingMemebers) {
+                            setCurrentMembers(existingMemebers);
+                        }
+                    }
+                })
         }
     }
-    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const date = new Date();
     const monthName = months[date.getMonth()]
 
@@ -44,7 +44,7 @@ const CurrentMessMember = () => {
                 <h2><span className='text-accent'>Current total members: </span>{currentMembers?.length}</h2>
                 <h2> <span className='text-accent'>Current Month:</span> {monthName}</h2>
             </div>
-            
+
             <div className='flex flex-wrap gap-2'>
                 {
                     currentMembers?.map(currentMember => <DisplayCurrentMember
@@ -57,7 +57,7 @@ const CurrentMessMember = () => {
             </div>
             {details && <ModalOfcurrentMemberDetails key={details._id} details={details}></ModalOfcurrentMemberDetails>}
             {details && <UpdateCurrentMemberModal details={details}></UpdateCurrentMemberModal>}
-       
+
         </div>
     );
 };

@@ -21,13 +21,13 @@ const CreateMess = () => {
             totalMember: event.target.totalMember.value,
         }
         //send mess information to database by server
-        const url = `http://localhost:5000/mess/${messInfo.ownerEmail}`;
+        const url = `https://my-mess-server.vercel.app/mess/${messInfo.ownerEmail}`;
         fetch(url, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify({messInfo, currentUser}),
+            body: JSON.stringify({ messInfo, currentUser }),
         })
             .then(res => res.json())
             .then(data => {
@@ -35,7 +35,7 @@ const CreateMess = () => {
                     navigate('/ownerDashboard');
                     toast.success(`Your ${messInfo.name} mess successfully created`);
                 }
-                else{
+                else {
                     toast.warning(data.message)
                 }
                 event.target.reset();

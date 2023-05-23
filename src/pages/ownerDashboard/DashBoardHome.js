@@ -17,14 +17,14 @@ const DashBoardHome = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:5000/messMember/${currentUser.email}`)
+        fetch(`https://my-mess-server.vercel.app/messMember/${currentUser.email}`)
             .then(res => res.json())
             .then(data => {
                 setCurrentMember(data);
                 setIsLoading(false);
             })
     }, [])
-   
+
     return (
         <>{
             (isLoading && <Loading></Loading>) || (!isLoading && <div>

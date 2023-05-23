@@ -45,7 +45,7 @@ const AddMember = () => {
                         memberImage: data?.data?.url,
                     }
                     // send newMemberInfo to database by server
-                    const url = `http://localhost:5000/addMessMember/${newMemberInfo.emailAddress}`
+                    const url = `https://my-mess-server.vercel.app/addMessMember/${newMemberInfo.emailAddress}`
                     fetch(url, {
                         method: "PUT",
                         headers: {
@@ -55,10 +55,10 @@ const AddMember = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            if(data.message){
+                            if (data.message) {
                                 setIsLoading(false);
                                 toast.warning(data.message)
-                            }else{
+                            } else {
                                 if (data.upsertedId != null) {
                                     setIsLoading(false);
                                     toast.success(`${newMemberInfo.name} added successfully`);
@@ -79,16 +79,16 @@ const AddMember = () => {
 
     // load mess information................
     useEffect(() => {
-        fetch(`http://localhost:5000/mess/${currentUser.email}`)
-        .then(res => res.json())
-        .then(MessData => {
-            setMessInfo(MessData);
-        })
+        fetch(`https://my-mess-server.vercel.app/mess/${currentUser.email}`)
+            .then(res => res.json())
+            .then(MessData => {
+                setMessInfo(MessData);
+            })
     }, [])
 
     return (
         <>
-            {((isLoading) && (<Loading></Loading>)) || ( (!isLoading) && (<div className='container'>
+            {((isLoading) && (<Loading></Loading>)) || ((!isLoading) && (<div className='container'>
                 <h2 className='text-center text-xl font-bold mt-3 mb-2 text-secondary'>Add or Update <span className='text-accent'>{messInfo.name}</span> Member</h2>
                 <div className="form-control w-50 mx-auto p-4 border-accent-focus">
                     <form onSubmit={handleAddMember}>

@@ -38,7 +38,7 @@ const AddAsMember = () => {
                         image: data?.data?.url,
                     }
                     // send requested member information to database by server
-                    const url = `http://localhost:5000/requestedMember/${requestedMemberInformation.email}`
+                    const url = `https://my-mess-server.vercel.app/requestedMember/${requestedMemberInformation.email}`
                     fetch(url, {
                         method: 'PUT',
                         headers: {
@@ -48,11 +48,11 @@ const AddAsMember = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            if(data.upsertedId != null){
+                            if (data.upsertedId != null) {
                                 setIsLoading(false);
                                 toast.success(`${requestedMemberInformation.email} request successfully sended. Please wait`);
                                 navigate('/home');
-                            }else{
+                            } else {
                                 setIsLoading(false);
                                 toast.success(`${requestedMemberInformation.email} request successfully updated. Please wait`);
                                 navigate('/home');
@@ -75,7 +75,7 @@ const AddAsMember = () => {
                     <input type="text" placeholder="Mess Id" name='id' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Your Name" name='name' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Phone Number" name='phone' className="input input-bordered border-accent rounded w-100 mt-3" required />
-                    <input type="email" placeholder="Email Address" name='email' className="input input-bordered border-accent border-dotted rounded w-100 mt-3" style={{background: '#eee', borderColor: 'cyan'}} value={user?.email} disabled required />
+                    <input type="email" placeholder="Email Address" name='email' className="input input-bordered border-accent border-dotted rounded w-100 mt-3" style={{ background: '#eee', borderColor: 'cyan' }} value={user?.email} disabled required />
                     <input type="text" placeholder="NID Number" name='nidNumber' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Status" name='status' className="input input-bordered border-accent rounded w-100  mt-3" required />
                     <input type="text" placeholder="Address" name='address' className="input input-bordered border-accent rounded w-100  mt-3" required />
@@ -87,7 +87,7 @@ const AddAsMember = () => {
                         <option value="Low Class">Low class</option>
                     </select><br />
                     <label htmlFor="memberImage" className='mt-2'>Upload Your Image</label><br />
-                    <input type="file" onChange={handleImageChange} name="memberImage" className='mt-1' id="" required/>
+                    <input type="file" onChange={handleImageChange} name="memberImage" className='mt-1' id="" required />
                     <input className='btn btn-accent mt-3 w-100 capitalize ' type="submit" value="Send Request" />
                 </form>
             </div>

@@ -19,7 +19,7 @@ const Payment = () => {
     const totalWithoutUplift = houseRantInt + othersCostInt;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/messMember/${email}`)
+        fetch(`https://my-mess-server.vercel.app/messMember/${email}`)
             .then(res => res.json())
             .then(data => {
                 if (data) {
@@ -46,7 +46,7 @@ const Payment = () => {
                 <div className="p-4">
                     <h2 className='font-bold'>Your Payable Ammount: {paymentAmmount ? paymentAmmount : "00"}</h2>
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm paymentAmount = {paymentAmmount} currentMember={currentMember} />
+                        <CheckoutForm paymentAmount={paymentAmmount} currentMember={currentMember} />
                     </Elements>
                 </div>
             </div>

@@ -9,7 +9,7 @@ const MessCost = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:5000/messMember`)
+        fetch(`https://my-mess-server.vercel.app/messMember`)
             .then(res => res.json())
             .then(data => {
                 setMessMembers(data);
@@ -20,7 +20,7 @@ const MessCost = () => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const date = new Date();
     const monthName = months[date.getMonth()]
-  
+
     return (
         <>{
             (isLoading && <Loading></Loading>) || (!isLoading && <div>
