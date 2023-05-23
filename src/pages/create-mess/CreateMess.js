@@ -21,7 +21,7 @@ const CreateMess = () => {
             totalMember: event.target.totalMember.value,
         }
         //send mess information to database by server
-        const url = `http://localhost:5000//mess/${messInfo.ownerEmail}`;
+        const url = `https://my-mess-server.vercel.app/mess/${messInfo.ownerEmail}`;
         fetch(url, {
             method: 'POST',
             headers: {

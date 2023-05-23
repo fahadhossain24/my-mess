@@ -24,7 +24,7 @@ const DisplayRequestedMember = ({ requestedMember, setDetails, handleDeleteReque
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000//requestedMember')
+        fetch('https://my-mess-server.vercel.app/requestedMember')
             .then(res => res.json())
             .then(data => {
                 setRequestedMembers(data);
@@ -33,7 +33,7 @@ const DisplayRequestedMember = ({ requestedMember, setDetails, handleDeleteReque
     const deleteMemberAfterAdd = (email) => {
         const confirmedDelete = window.confirm('Are you sure you want to Add this Person?')
         if (confirmedDelete) {
-            const url = `http://localhost:5000//requestedMember/${email}`
+            const url = `https://my-mess-server.vercel.app/requestedMember/${email}`
             fetch(url, {
                 method: 'DELETE',
             })
@@ -50,7 +50,7 @@ const DisplayRequestedMember = ({ requestedMember, setDetails, handleDeleteReque
     const handleRequestedMemberAdd = () => {
         setIsLoading(true);
         // console.log(newMemberInfo.emailAddress)
-        const url = `http://localhost:5000//addMessMember/${newMemberInfo.emailAddress}`
+        const url = `https://my-mess-server.vercel.app/addMessMember/${newMemberInfo.emailAddress}`
         fetch(url, {
             method: "PUT",
             headers: {

@@ -26,7 +26,7 @@ const UpdateCurrentMemberModal = ({ details }) => {
         }
 
         //update informations.........
-        const url = `http://localhost:5000//addMessMember/${updateInfo.emailAddress}`
+        const url = `https://my-mess-server.vercel.app/addMessMember/${updateInfo.emailAddress}`
         fetch(url, {
             method: "PUT",
             headers: {

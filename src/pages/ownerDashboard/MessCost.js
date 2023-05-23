@@ -9,7 +9,7 @@ const MessCost = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:5000//messMember`)
+        fetch(`https://my-mess-server.vercel.app/messMember`)
             .then(res => res.json())
             .then(data => {
                 setMessMembers(data);

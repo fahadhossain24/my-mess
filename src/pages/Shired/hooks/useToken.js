@@ -10,7 +10,7 @@ const useToken = (user) => {
             userEmail: email,
         }
         if (email) {
-            const url = `http://localhost:5000//user/${email}`;
+            const url = `https://my-mess-server.vercel.app/user/${email}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {

@@ -9,7 +9,7 @@ const CurrentMessMember = () => {
     const [details, setDetails] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:5000//messMember')
+        fetch('https://my-mess-server.vercel.app/messMember')
             .then(res => res.json())
             .then(data => {
                 setCurrentMembers(data);
@@ -19,7 +19,7 @@ const CurrentMessMember = () => {
     const hanldeDeleteCurrentMember = (memberEmail) => {
         const confirmation = window.confirm('Are You sure you want to delete this member?')
         if (confirmation) {
-            const url = `http://localhost:5000//messMember/${memberEmail}`
+            const url = `https://my-mess-server.vercel.app/messMember/${memberEmail}`
             fetch(url, {
                 method: 'DELETE'
             })

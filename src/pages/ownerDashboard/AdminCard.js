@@ -11,7 +11,7 @@ const AdminCard = () => {
     const { name, emailAddress, phoneNumber, nidNumber, houseRant, othersCost, developmentCharge, paymentStatus, memberImage, roomCatagory } = memberByInputEmail;
     useEffect(() => {
         setIsLoading(true);
-        fetch('http://localhost:5000//messMember')
+        fetch('https://my-mess-server.vercel.app/messMember')
             .then(res => res.json())
             .then(data => {
                 setMessMembers(data)
@@ -21,7 +21,7 @@ const AdminCard = () => {
     useEffect(() => {
         setIsLoading(true);
         if (inputEmail) {
-            fetch(`http://localhost:5000//messMember/${inputEmail}`)
+            fetch(`https://my-mess-server.vercel.app/messMember/${inputEmail}`)
                 .then(res => res.json())
                 .then(data => {
                     setMemberByInputEmail(data);
@@ -56,7 +56,7 @@ const AdminCard = () => {
         // update member information .............
         setIsLoading(true);
         if (inputEmail) {
-            const url = `http://localhost:5000//addMessMember/${inputEmail}`;
+            const url = `https://my-mess-server.vercel.app/addMessMember/${inputEmail}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
