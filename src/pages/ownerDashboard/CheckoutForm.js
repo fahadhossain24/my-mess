@@ -12,7 +12,7 @@ const CheckoutForm = ({ paymentAmount, currentMember }) => {
     useEffect(() => {
         if (paymentAmount) {
             // Create PaymentIntent as soon as the page loads
-            fetch("https://my-mess-server.vercel.app/createPaymentIntent", {
+            fetch("http://localhost:5000//createPaymentIntent", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

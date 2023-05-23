@@ -19,7 +19,7 @@ const OwnerDashboard = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://my-mess-server.vercel.app/mess/${currentUser?.email}`)
+        fetch(`http://localhost:5000//mess/${currentUser?.email}`)
             .then(res => res.json())
             .then(data => {
 
@@ -36,7 +36,7 @@ const OwnerDashboard = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://my-mess-server.vercel.app/messById/${messIdFromUser}`)
+        fetch(`http://localhost:5000//messById/${messIdFromUser}`)
             .then(res => res.json())
             .then(data => {
                 if (data._id) {
@@ -51,7 +51,7 @@ const OwnerDashboard = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`https://my-mess-server.vercel.app/messMember/${currentUser.email}`)
+        fetch(`http://localhost:5000//messMember/${currentUser.email}`)
             .then(res => res.json())
             .then(data => {
                 setCurrentMember(data);

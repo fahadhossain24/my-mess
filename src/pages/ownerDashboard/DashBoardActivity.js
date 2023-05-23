@@ -8,7 +8,7 @@ const DashBoardActivity = ({ messInfo, findedMess }) => {
     const [memberRole, setMemberRole] = useState('')
 
     useEffect(() => {
-        fetch(`https://my-mess-server.vercel.app/messMember/${currentUser.email}`)
+        fetch(`http://localhost:5000//messMember/${currentUser.email}`)
             .then(res => res.json())
             .then(data => {
                 setMemberRole(data.memberRole);

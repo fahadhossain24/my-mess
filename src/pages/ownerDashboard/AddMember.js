@@ -45,7 +45,7 @@ const AddMember = () => {
                         memberImage: data?.data?.url,
                     }
                     // send newMemberInfo to database by server
-                    const url = `https://my-mess-server.vercel.app/addMessMember/${newMemberInfo.emailAddress}`
+                    const url = `http://localhost:5000//addMessMember/${newMemberInfo.emailAddress}`
                     fetch(url, {
                         method: "PUT",
                         headers: {
@@ -79,7 +79,7 @@ const AddMember = () => {
 
     // load mess information................
     useEffect(() => {
-        fetch(`https://my-mess-server.vercel.app/mess/${currentUser.email}`)
+        fetch(`http://localhost:5000//mess/${currentUser.email}`)
             .then(res => res.json())
             .then(MessData => {
                 setMessInfo(MessData);
