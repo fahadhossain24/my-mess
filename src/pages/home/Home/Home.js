@@ -37,7 +37,7 @@ const Home = () => {
                     
                 </div>
                 <div className="carousel-button">
-                        <button onClick={handleCreateMess} className='btn btn-accent me-4 text-2xl'>Create a mess</button>
+                        <button onClick={handleCreateMess} className='btn btn-accent me-4 mb-1 text-2xl ml-2'>Create a mess</button>
                         <button onClick={handleAddAsMember} className='btn btn-accent text-2xl'>Add as member</button>
                     </div>
             </div>)

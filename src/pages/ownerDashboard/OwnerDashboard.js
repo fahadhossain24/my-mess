@@ -85,8 +85,8 @@ const OwnerDashboard = () => {
                     <div className='text-center mt-4'>
                         <h2 className='text-error text-2xl'>{messInfo.message}</h2>
                         <p className=''>You should have access it after getting mess wonership or membership</p>
-                        <div className="mt-3">
-                            <button onClick={handleCreateMess} className='btn btn-accent me-4 text-2xl'>Create a mess</button>
+                        <div className="mt-3 ">
+                            <button onClick={handleCreateMess} className='btn btn-accent me-4 text-2xl ml-2 mb-1'>Create a mess</button>
                             <label htmlFor="login-modal" className="btn btn-accent me-4 text-2xl">Login into a mess</label>
                         </div>
                     </div>

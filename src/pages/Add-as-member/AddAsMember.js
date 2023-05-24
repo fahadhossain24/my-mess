@@ -69,7 +69,7 @@ const AddAsMember = () => {
     return (
         <>{((isLoading) && (<Loading></Loading>)) || ((!isLoading) && (<div className='container'>
             <h2 className='text-center text-3xl font-bold mt-3 text-secondary'>Member <span className='text-accent'>Request</span></h2>
-            <div className="form-control w-50 mx-auto p-4 border-accent-focus">
+            <div className="form-control w-full lg:w-[50%] mx-auto p-4 border-accent-focus">
                 <form onSubmit={handleAddAsMember}>
                     <input type="text" placeholder="Mess Name" name='messName' className="input input-bordered border-accent rounded w-100" required />
                     <input type="text" placeholder="Mess Id" name='id' className="input input-bordered border-accent rounded w-100 mt-3" required />

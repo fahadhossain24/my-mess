@@ -90,7 +90,7 @@ const AddMember = () => {
         <>
             {((isLoading) && (<Loading></Loading>)) || ((!isLoading) && (<div className='container'>
                 <h2 className='text-center text-xl font-bold mt-3 mb-2 text-secondary'>Add or Update <span className='text-accent'>{messInfo.name}</span> Member</h2>
-                <div className="form-control w-50 mx-auto p-4 border-accent-focus">
+                <div className="form-control w-full lg:w-[50%] mx-auto p-4 border-accent-focus">
                     <form onSubmit={handleAddMember}>
                         <input type="text" placeholder="Member Name" name='name' className="input input-bordered border-accent rounded w-100" required />
                         <input type="text" placeholder="Phone Number" name='phoneNumber' className="input input-bordered border-accent rounded w-100 mt-3" required />
