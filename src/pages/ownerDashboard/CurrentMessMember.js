@@ -3,23 +3,37 @@ import DisplayCurrentMember from './DisplayCurrentMember';
 import ModalOfcurrentMemberDetails from './ModalOfcurrentMemberDetails';
 import UpdateCurrentMemberModal from './UpdateCurrentMemberModal';
 import Loading from '../Shired/Loading/Loading';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const CurrentMessMember = () => {
     const [currentMembers, setCurrentMembers] = useState([]);
     const [details, setDetails] = useState({});
 
+    const [user] = useAuthState(auth);
+    const [messId, setMessId] = useState('')
+  
     useEffect(() => {
-        fetch('https://my-mess-server.vercel.app/messMember')
+        fetch(`http://localhost:5000/allMessInfo/${user.email}`)
+        .then(res => res.json())
+        .then(data => {
+            setMessId(data._id);
+        })
+    }, [user])
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/messMember/${messId}`)
             .then(res => res.json())
             .then(data => {
                 setCurrentMembers(data);
             })
-    }, [currentMembers])
+    }, [currentMembers, messId])
 
     const hanldeDeleteCurrentMember = (memberEmail) => {
         const confirmation = window.confirm('Are You sure you want to delete this member?')
         if (confirmation) {
-            const url = `https://my-mess-server.vercel.app/messMember/${memberEmail}`
+            const url = `http://localhost:5000/messMember/${memberEmail}`
             fetch(url, {
                 method: 'DELETE'
             })

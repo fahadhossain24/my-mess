@@ -21,6 +21,8 @@ import RequestedMember from './pages/ownerDashboard/RequestedMember';
 import CurrentMessMember from './pages/ownerDashboard/CurrentMessMember';
 import AdminCard from './pages/ownerDashboard/AdminCard';
 import Payment from './pages/ownerDashboard/Payment';
+import MessSearch from './pages/home/Home/MessSearch';
+import DisplayMap from './pages/home/Home/DisplayMap';
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
         <Route path='/contact' element={<Contact></Contact>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
+        <Route path='/map/:messId' element={<DisplayMap></DisplayMap>}></Route>
         <Route path='/createMess' element={
         <RequireAuth>
           <CreateMess></CreateMess>
@@ -41,6 +44,11 @@ function App() {
         <Route path='/addAsMember' element={
         <RequireAuth>
           <AddAsMember></AddAsMember>
+        </RequireAuth>
+        }></Route>
+        <Route path='/messSearch' element={
+        <RequireAuth>
+          <MessSearch></MessSearch>
         </RequireAuth>
         }></Route>
         <Route path='ownerDashboard' element={<RequireAuth><OwnerDashboard></OwnerDashboard></RequireAuth>}>

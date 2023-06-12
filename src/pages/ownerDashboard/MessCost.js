@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import Loading from '../Shired/Loading/Loading';
 import DisplayMessCost from './DisplayMessCost';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 
 const MessCost = () => {
     const [messMembers, setMessMembers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const [user] = useAuthState(auth);
+    const [messId, setMessId] = useState('')
+  
+    useEffect(() => {
+        fetch(`http://localhost:5000/allMessInfo/${user.email}`)
+        .then(res => res.json())
+        .then(data => {
+            setMessId(data._id);
+        })
+    }, [user])
+
     useEffect(() => {
         setIsLoading(true);
-        fetch(`https://my-mess-server.vercel.app/messMember`)
+        fetch(`http://localhost:5000/messMember/${messId}`)
             .then(res => res.json())
             .then(data => {
                 setMessMembers(data);
                 setIsLoading(false);
             })
-    }, [])
+    }, [messId])
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const date = new Date();

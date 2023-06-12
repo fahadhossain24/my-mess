@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 import ModalForRequestedMemberDetails from './ModalForRequestedMemberDetails';
 
 const DisplayRequestedMember = ({ requestedMember, setDetails, handleDeleteRequest }) => {
 
+    
+
     const { name, messId, address, email, phone, image, parentsPhone, status, nidNumber, roomCatagory, _id } = requestedMember;
     const [isLoading, setIsLoading] = useState(false);
     const [requestedMembers, setRequestedMembers] = useState([]);
+    const [user] = useAuthState(auth);
+    const [messObjId, setMessId] = useState('')
 
     const newMemberInfo = {
         name: name,
@@ -22,9 +28,19 @@ const DisplayRequestedMember = ({ requestedMember, setDetails, handleDeleteReque
         roomCatagory: roomCatagory,
         messId: messId,
     }
+   
+
+  
+    useEffect(() => {
+        fetch(`http://localhost:5000/allMessInfo/${user.email}`)
+        .then(res => res.json())
+        .then(data => {
+            setMessId(data._id);
+        })
+    }, [user])
 
     useEffect(() => {
-        fetch('https://my-mess-server.vercel.app/requestedMember')
+        fetch(`http://localhost:5000/requestedMember/${messObjId}`)
             .then(res => res.json())
             .then(data => {
                 setRequestedMembers(data);
@@ -33,7 +49,7 @@ const DisplayRequestedMember = ({ requestedMember, setDetails, handleDeleteReque
     const deleteMemberAfterAdd = (email) => {
         const confirmedDelete = window.confirm('Are you sure you want to Add this Person?')
         if (confirmedDelete) {
-            const url = `https://my-mess-server.vercel.app/requestedMember/${email}`
+            const url = `http://localhost:5000/requestedMember/${email}`
             fetch(url, {
                 method: 'DELETE',
             })
@@ -50,7 +66,7 @@ const DisplayRequestedMember = ({ requestedMember, setDetails, handleDeleteReque
     const handleRequestedMemberAdd = () => {
         setIsLoading(true);
         // console.log(newMemberInfo.emailAddress)
-        const url = `https://my-mess-server.vercel.app/addMessMember/${newMemberInfo.emailAddress}`
+        const url = `http://localhost:5000/addMessMember/${newMemberInfo.emailAddress}`
         fetch(url, {
             method: "PUT",
             headers: {

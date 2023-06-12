@@ -23,6 +23,7 @@ const AddAsMember = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if (data.success) {
                     const requestedMemberInformation = {
                         messName: event.target.messName.value,
@@ -38,7 +39,7 @@ const AddAsMember = () => {
                         image: data?.data?.url,
                     }
                     // send requested member information to database by server
-                    const url = `https://my-mess-server.vercel.app/requestedMember/${requestedMemberInformation.email}`
+                    const url = `http://localhost:5000/requestedMember/${requestedMemberInformation.email}`
                     fetch(url, {
                         method: 'PUT',
                         headers: {

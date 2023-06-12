@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Loading from '../Shired/Loading/Loading';
 import { toast } from 'react-toastify';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const AdminCard = () => {
     const [messMembers, setMessMembers] = useState([]);
@@ -9,19 +11,32 @@ const AdminCard = () => {
     const [inputRole, setInputRole] = useState('');
     const [memberByInputEmail, setMemberByInputEmail] = useState({});
     const { name, emailAddress, phoneNumber, nidNumber, houseRant, othersCost, developmentCharge, paymentStatus, memberImage, roomCatagory } = memberByInputEmail;
+
+    const [user] = useAuthState(auth);
+    const [messId, setMessId] = useState('')
+  
+    useEffect(() => {
+        fetch(`http://localhost:5000/allMessInfo/${user.email}`)
+        .then(res => res.json())
+        .then(data => {
+            setMessId(data._id);
+        })
+    })
+
+
     useEffect(() => {
         setIsLoading(true);
-        fetch('https://my-mess-server.vercel.app/messMember')
+        fetch(`http://localhost:5000/messMember/${messId}`)
             .then(res => res.json())
             .then(data => {
                 setMessMembers(data)
                 setIsLoading(false)
             })
-    }, [])
+    }, [messId])
     useEffect(() => {
         setIsLoading(true);
         if (inputEmail) {
-            fetch(`https://my-mess-server.vercel.app/messMember/${inputEmail}`)
+            fetch(`http://localhost:5000/messMember/${inputEmail}`)
                 .then(res => res.json())
                 .then(data => {
                     setMemberByInputEmail(data);
@@ -56,7 +71,7 @@ const AdminCard = () => {
         // update member information .............
         setIsLoading(true);
         if (inputEmail) {
-            const url = `https://my-mess-server.vercel.app/addMessMember/${inputEmail}`;
+            const url = `http://localhost:5000/addMessMember/${inputEmail}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {

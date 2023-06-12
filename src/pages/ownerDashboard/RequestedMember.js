@@ -3,22 +3,34 @@ import { toast } from 'react-toastify';
 import DisplayRequestedMember from './DisplayRequestedMember';
 import ModalForRequestedMemberDetails from './ModalForRequestedMemberDetails';
 import Loading from '../Shired/Loading/Loading';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const RequestedMember = () => {
     const [requestedMembers, setRequestedMembers] = useState([]);
     const [details, setDetails] = useState({})
+    const [user] = useAuthState(auth);
+    const [messId, setMessId] = useState('')
+  
+    useEffect(() => {
+        fetch(`http://localhost:5000/allMessInfo/${user.email}`)
+        .then(res => res.json())
+        .then(data => {
+            setMessId(data._id);
+        })
+    }, [user])
 
     useEffect(() => {
-        fetch('https://my-mess-server.vercel.app/requestedMember')
+        fetch(`http://localhost:5000/requestedMember/${messId}`)
             .then(res => res.json())
             .then(data => {
                 setRequestedMembers(data);
             })
-    }, [requestedMembers])
+    }, [requestedMembers, messId])
     const handleDeleteRequest = (email) => {
         const confirmedDelete = window.confirm('Are you sure you want to delete this request?')
         if (confirmedDelete) {
-            const url = `https://my-mess-server.vercel.app/requestedMember/${email}`
+            const url = `http://localhost:5000/requestedMember/${email}`
             fetch(url, {
                 method: 'DELETE',
             })

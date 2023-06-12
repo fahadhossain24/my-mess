@@ -33,6 +33,7 @@ const AddMember = () => {
                 if (data.success || data.status_code === 400) {
                     const newMemberInfo = {
                         name: event.target.name.value,
+                        messId: event.target.messId.value,
                         phoneNumber: event.target.phoneNumber.value,
                         emailAddress: event.target.memberEmail.value,
                         nidNumber: event.target.nidNumber.value,
@@ -45,7 +46,7 @@ const AddMember = () => {
                         memberImage: data?.data?.url,
                     }
                     // send newMemberInfo to database by server
-                    const url = `https://my-mess-server.vercel.app/addMessMember/${newMemberInfo.emailAddress}`
+                    const url = `http://localhost:5000/addMessMember/${newMemberInfo.emailAddress}`
                     fetch(url, {
                         method: "PUT",
                         headers: {
@@ -79,7 +80,7 @@ const AddMember = () => {
 
     // load mess information................
     useEffect(() => {
-        fetch(`https://my-mess-server.vercel.app/mess/${currentUser.email}`)
+        fetch(`http://localhost:5000/mess/${currentUser.email}`)
             .then(res => res.json())
             .then(MessData => {
                 setMessInfo(MessData);
@@ -93,6 +94,7 @@ const AddMember = () => {
                 <div className="form-control w-full lg:w-[50%] mx-auto p-4 border-accent-focus">
                     <form onSubmit={handleAddMember}>
                         <input type="text" placeholder="Member Name" name='name' className="input input-bordered border-accent rounded w-100" required />
+                        <input type="text" placeholder="Mess Id" name='messId' className="input input-bordered border-accent rounded w-100 mt-3" required />
                         <input type="text" placeholder="Phone Number" name='phoneNumber' className="input input-bordered border-accent rounded w-100 mt-3" required />
                         <input type="email" placeholder="Email Address" name='memberEmail' className="input input-bordered border-accent rounded w-100 mt-3" required />
                         <input type="text" placeholder="NID Number" name='nidNumber' className="input input-bordered border-accent rounded w-100 mt-3" required />

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const DashBoardHome = () => {
     const [currentMember, setCurrentMember] = useState({});
-    const [currentUser] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [isLoading, setIsLoading] = useState(false);
 
     const houseRant = parseInt(currentMember.houseRant);
@@ -17,13 +17,14 @@ const DashBoardHome = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`https://my-mess-server.vercel.app/messMember/${currentUser.email}`)
+        fetch(`http://localhost:5000/messMemberbyEmail/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setCurrentMember(data);
                 setIsLoading(false);
             })
     }, [])
+
 
     return (
         <>{

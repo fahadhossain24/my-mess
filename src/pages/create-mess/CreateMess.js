@@ -12,6 +12,9 @@ const CreateMess = () => {
         event.preventDefault();
         const messInfo = {
             name: event.target.name.value,
+            address: (event.target.address.value).toLocaleLowerCase(),
+            latitude: event.target.latitude.value,
+            longitude: event.target.longitude.value,
             ownerEmail: event.target.OwnerEmail.value,
             houseRant: event.target.houseRant.value,
             currentBill: event.target.currentBill.value,
@@ -21,7 +24,7 @@ const CreateMess = () => {
             totalMember: event.target.totalMember.value,
         }
         //send mess information to database by server
-        const url = `https://my-mess-server.vercel.app/mess/${messInfo.ownerEmail}`;
+        const url = `http://localhost:5000/mess/${messInfo.ownerEmail}`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -50,6 +53,9 @@ const CreateMess = () => {
             <div className="form-control w-full lg:w-[50%] mx-auto p-4 border-accent-focus">
                 <form onSubmit={handleCreateNewMess}>
                     <input type="text" placeholder="Mess Name" name='name' className="input input-bordered border-accent rounded w-100" required />
+                    <input type="text" placeholder="Mess Address" name='address' className="input input-bordered border-accent rounded w-100 mt-3" required />
+                    <input type="text" placeholder="Latitude" name='latitude' className="input input-bordered border-accent rounded w-100 mt-3" required />
+                    <input type="text" placeholder="Longitude" name='longitude' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="email" placeholder="Mess Owner Email" name='OwnerEmail' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="Total Member" name='totalMember' className="input input-bordered border-accent rounded w-100 mt-3" required />
                     <input type="text" placeholder="House Rant" name='houseRant' className="input input-bordered border-accent rounded w-100 mt-3" required />

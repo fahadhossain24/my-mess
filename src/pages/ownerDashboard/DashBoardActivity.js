@@ -8,7 +8,7 @@ const DashBoardActivity = ({ messInfo, findedMess }) => {
     const [memberRole, setMemberRole] = useState('')
 
     useEffect(() => {
-        fetch(`https://my-mess-server.vercel.app/messMember/${currentUser.email}`)
+        fetch(`http://localhost:5000/messMember/${currentUser.email}`)
             .then(res => res.json())
             .then(data => {
                 setMemberRole(data.memberRole);
@@ -17,7 +17,10 @@ const DashBoardActivity = ({ messInfo, findedMess }) => {
 
     return (
         <div>
-            <h2 className='text-center text-2xl mt-2 text-secondary font-bold'>Welcome to <span className='text-accent'>{(messInfo?.name) || findedMess?.name}</span>{findedMess?.name ? ' User ' : ' Owner '} Dashboard</h2>
+            <h2 className='text-center text-2xl mt-2 text-secondary font-bold'>Welcome to <span className='text-accent'>{(messInfo?.name) || findedMess?.name}</span> {findedMess?.name ? ' User ' : ' Owner '} Dashboard</h2>
+            {
+                findedMess?.name ? '' : <h2 className='text-center text-2xl mt-2 text-secondary font-bold'><span>{(messInfo?.name) || findedMess?.name}</span> id = {messInfo?._id || findedMess?._id}</h2>
+            }
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
