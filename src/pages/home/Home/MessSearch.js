@@ -9,7 +9,7 @@ const MessSearch = (props) => {
     const [searchText, setSearchText] = useState('');
     const [isLoading, setIsloading] = useState(false);
     const [findedMesses, setFindedMesses] = useState([]);
-    
+
 
     const handleLocationSearch = async () => {
         setIsloading(true)
@@ -17,7 +17,7 @@ const MessSearch = (props) => {
             locationName: searchText.toLocaleLowerCase(),
         }
 
-        const url = 'http://localhost:5000/messLocation';
+        const url = 'https://my-mess-server.vercel.app/messLocation';
         fetch(url, {
             method: 'POST',
             headers: {
@@ -36,7 +36,7 @@ const MessSearch = (props) => {
         handleLocationSearch();
     }
 
-    
+
 
     return (
         <div>
@@ -56,7 +56,7 @@ const MessSearch = (props) => {
                     )
                 }
             </div>
-            
+
         </div>
     );
 };

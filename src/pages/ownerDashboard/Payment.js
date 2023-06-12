@@ -19,7 +19,7 @@ const Payment = () => {
     const totalWithoutUplift = houseRantInt + othersCostInt;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/messMember/${email}`)
+        fetch(`https://my-mess-server.vercel.app/messMember/${email}`)
             .then(res => res.json())
             .then(data => {
                 if (data) {

@@ -11,17 +11,17 @@ const RequestedMember = () => {
     const [details, setDetails] = useState({})
     const [user] = useAuthState(auth);
     const [messId, setMessId] = useState('')
-  
+
     useEffect(() => {
-        fetch(`http://localhost:5000/allMessInfo/${user.email}`)
-        .then(res => res.json())
-        .then(data => {
-            setMessId(data._id);
-        })
+        fetch(`https://my-mess-server.vercel.app/allMessInfo/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setMessId(data._id);
+            })
     }, [user])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/requestedMember/${messId}`)
+        fetch(`https://my-mess-server.vercel.app/requestedMember/${messId}`)
             .then(res => res.json())
             .then(data => {
                 setRequestedMembers(data);
@@ -30,7 +30,7 @@ const RequestedMember = () => {
     const handleDeleteRequest = (email) => {
         const confirmedDelete = window.confirm('Are you sure you want to delete this request?')
         if (confirmedDelete) {
-            const url = `http://localhost:5000/requestedMember/${email}`
+            const url = `https://my-mess-server.vercel.app/requestedMember/${email}`
             fetch(url, {
                 method: 'DELETE',
             })

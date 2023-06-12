@@ -14,19 +14,19 @@ const AdminCard = () => {
 
     const [user] = useAuthState(auth);
     const [messId, setMessId] = useState('')
-  
+
     useEffect(() => {
-        fetch(`http://localhost:5000/allMessInfo/${user.email}`)
-        .then(res => res.json())
-        .then(data => {
-            setMessId(data._id);
-        })
+        fetch(`https://my-mess-server.vercel.app/allMessInfo/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setMessId(data._id);
+            })
     })
 
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:5000/messMember/${messId}`)
+        fetch(`https://my-mess-server.vercel.app/messMember/${messId}`)
             .then(res => res.json())
             .then(data => {
                 setMessMembers(data)
@@ -36,7 +36,7 @@ const AdminCard = () => {
     useEffect(() => {
         setIsLoading(true);
         if (inputEmail) {
-            fetch(`http://localhost:5000/messMember/${inputEmail}`)
+            fetch(`https://my-mess-server.vercel.app/messMember/${inputEmail}`)
                 .then(res => res.json())
                 .then(data => {
                     setMemberByInputEmail(data);
@@ -71,7 +71,7 @@ const AdminCard = () => {
         // update member information .............
         setIsLoading(true);
         if (inputEmail) {
-            const url = `http://localhost:5000/addMessMember/${inputEmail}`;
+            const url = `https://my-mess-server.vercel.app/addMessMember/${inputEmail}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {

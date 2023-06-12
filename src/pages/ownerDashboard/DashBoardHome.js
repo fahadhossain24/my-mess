@@ -17,7 +17,7 @@ const DashBoardHome = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:5000/messMemberbyEmail/${user.email}`)
+        fetch(`https://my-mess-server.vercel.app/messMemberbyEmail/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setCurrentMember(data);

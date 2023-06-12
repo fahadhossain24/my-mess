@@ -13,40 +13,40 @@ const DisplayMap = () => {
     const { messId } = useParams()
     const [mess, setMess] = useState({})
     const [isLoading, setIsloading] = useState(false);
-    const icon = L.icon({ 
-        iconRetinaUrl:iconRetina, 
-        iconUrl: iconMarker, 
-        shadowUrl: iconShadow 
+    const icon = L.icon({
+        iconRetinaUrl: iconRetina,
+        iconUrl: iconMarker,
+        shadowUrl: iconShadow
     });
 
     useEffect(() => {
         setIsloading(true)
-        fetch(`http://localhost:5000/messWithId/${messId}`)
+        fetch(`https://my-mess-server.vercel.app/messWithId/${messId}`)
             .then(res => res.json())
             .then(data => {
-              
-                    console.log(data)
-                    setMess(data)
-                    setIsloading(false)
-                
+
+                console.log(data)
+                setMess(data)
+                setIsloading(false)
+
             })
     }, [])
-    
+
     return (
         <div>
             {
-                (isLoading && <Loading></Loading>) || (!isLoading && parseFloat(mess.latitude) &&  <MapContainer className='leaflet-container' center={[parseFloat(mess.latitude), parseFloat(mess.longitude)]} zoom={15} scrollWheelZoom={false}>
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={[parseFloat(mess.latitude), parseFloat(mess.longitude)]} icon={icon}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
-                </Marker>
-                <DraggableMarker></DraggableMarker>
-            </MapContainer>)
+                (isLoading && <Loading></Loading>) || (!isLoading && parseFloat(mess.latitude) && <MapContainer className='leaflet-container' center={[parseFloat(mess.latitude), parseFloat(mess.longitude)]} zoom={15} scrollWheelZoom={false}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={[parseFloat(mess.latitude), parseFloat(mess.longitude)]} icon={icon}>
+                        <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                        </Popup>
+                    </Marker>
+                    <DraggableMarker></DraggableMarker>
+                </MapContainer>)
             }
         </div>
     );
