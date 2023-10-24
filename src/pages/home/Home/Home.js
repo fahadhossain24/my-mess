@@ -53,7 +53,7 @@ const Home = () => {
                 <div className="carousel-button text-center">
                     <button onClick={handleFindMess} className='btn btn-accent mb-1 me-2 text-2xl ml-2'>Find Mess</button>
                     <button onClick={handleCreateMess} className='btn btn-accent me-3 mb-1 text-2xl ml-2'>Create a mess</button>
-                    <button onClick={handleAddAsMember} className='btn btn-accent text-2xl'>Add as member</button>
+                    <button onClick={handleAddAsMember} className='btn btn-accent text-2xl'>Request to mess</button>
                 </div>
             </div>)
         }

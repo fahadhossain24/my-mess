@@ -17,18 +17,23 @@ const DashBoardHome = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`https://my-mess-server.vercel.app/messMemberbyEmail/${user.email}`)
+        fetch(`http://localhost:5000/messMemberbyEmail/${user.email}`)
             .then(res => res.json())
             .then(data => {
+                console.log(data)
+                if(!data){
+                    setCurrentMember({})
+                    setIsLoading(false)
+                }
                 setCurrentMember(data);
                 setIsLoading(false);
             })
     }, [])
 
-
+ 
     return (
         <>{
-            (isLoading && <Loading></Loading>) || (!isLoading && <div>
+            (isLoading && <Loading></Loading>) || (!isLoading && currentMember.status !== 'failed' ? <div>
                 <span className='mx-auto mb-[-5px] mt-3 w-[250px] h-[3px] bg-accent block'></span>
                 <h2 className='text-center mt-2'>Hi <span className='text-uppercase font-bold'>{currentMember.name}</span></h2>
                 <span className='mx-auto mt-1 w-[250px] h-[3px] bg-accent block'></span>
@@ -50,7 +55,7 @@ const DashBoardHome = () => {
                         </div>
                     </div>
                 </div>
-            </div>)
+            </div> : <h2 className=' h-[100vh] flex justify-center mt-44 text-3xl text-red-500 font-medium'>Profile Not Ready</h2> )
         }</>
     );
 };

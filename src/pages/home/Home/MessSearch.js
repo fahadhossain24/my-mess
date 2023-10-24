@@ -17,7 +17,7 @@ const MessSearch = (props) => {
             locationName: searchText.toLocaleLowerCase(),
         }
 
-        const url = 'https://my-mess-server.vercel.app/messLocation';
+        const url = 'http://localhost:5000/messLocation';
         fetch(url, {
             method: 'POST',
             headers: {

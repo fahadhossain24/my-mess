@@ -21,7 +21,7 @@ const DisplayMap = () => {
 
     useEffect(() => {
         setIsloading(true)
-        fetch(`https://my-mess-server.vercel.app/messWithId/${messId}`)
+        fetch(`http://localhost:5000/messWithId/${messId}`)
             .then(res => res.json())
             .then(data => {
 

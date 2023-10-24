@@ -13,7 +13,7 @@ const MessCost = () => {
     const [messId, setMessId] = useState('')
 
     useEffect(() => {
-        fetch(`https://my-mess-server.vercel.app/allMessInfo/${user.email}`)
+        fetch(`http://localhost:5000/allMessInfo/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setMessId(data._id);
@@ -22,7 +22,7 @@ const MessCost = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`https://my-mess-server.vercel.app/messMember/${messId}`)
+        fetch(`http://localhost:5000/messMember/${messId}`)
             .then(res => res.json())
             .then(data => {
                 setMessMembers(data);
