@@ -20,7 +20,7 @@ const DashBoardHome = () => {
         fetch(`http://localhost:5000/messMemberbyEmail/${user.email}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if(!data){
                     setCurrentMember({})
                     setIsLoading(false)
@@ -28,7 +28,9 @@ const DashBoardHome = () => {
                 setCurrentMember(data);
                 setIsLoading(false);
             })
-    }, [])
+    }, [user.email])
+
+    // console.log(currentMember)
 
  
     return (
